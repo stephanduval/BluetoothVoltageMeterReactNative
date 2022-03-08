@@ -8,31 +8,31 @@
 
 import React from 'react';
 import type {Node} from 'react';
-import {
-  StyleSheet,
-  Text,
-   View,
-} from 'react-native';
+import {StyleSheet, Text, View, Button, Linking} from 'react-native';
 
-
-
-
-const App =  () => {
-  
-
-  
-
+const App = () => {
   return (
-   <View>
-<Text>Programming With Mash Tutorial</Text>
-   </View>
+    <View style={styles.body}>
+      <Text style={styles.text}> Programming With Mash React Native Tutorial</Text>
+      <Button title='Mail Clerk' onPress={()=>{Linking.openURL('https://mailclerk.com/')}}></Button>
+    </View>
   );
 };
-
+ 
 const styles = StyleSheet.create({
-body: {
-  backgroundColor: '#ffffff',
-},
+  body: {
+    flex: 1,
+    backgroundColor: '#d3d3d3',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    textAlign: 'center',
+    color: '#ffffff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 10,
+  },
 });
 
 export default App;

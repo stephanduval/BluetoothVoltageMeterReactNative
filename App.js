@@ -29,8 +29,18 @@ const onClickHandler = () => {
   return (
     <View style={styles.body}>
       <Text style={styles.text}> This Program is called {name}</Text>
-      <Button title='Mail Clerk' onPress={()=>{Linking.openURL('https://mailclerk.com/')}}></Button>
-      <Button title='Update State var Name' onPress={onClickHandler}></Button>
+      
+        <View style = {styles.button}>
+          <Button title='Mail Clerk' onPress={()=>{Linking.openURL('https://mailclerk.com/')}}></Button>
+          <Text> 
+                      {`
+              line 1
+              line 2
+            `}                    
+          </Text>
+
+          <Button title='Update State var Name' onPress={onClickHandler}></Button>
+        </View>
       <Text style={styles.text}>This is session number: {session.number} and about {session.title}</Text>
       <Text stlye={styles.text}>{current ? 'current Session' : 'next session'}</Text>
     </View>
@@ -39,20 +49,28 @@ const onClickHandler = () => {
  
 const styles = StyleSheet.create({
   body: {
+    //flex: 1,
     flex: 1,
     backgroundColor: '#d3d3d3',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 30,
+    borderColor: '#333333',
+    borderRadius: 10,
+    margin: 10,
   },
   text: {
     textAlign: 'center',
     color: '#ffffff',
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
     margin: 10,
+    textTransform: 'uppercase',
   },
   button: {
-    margin: 10,
+    margin: 30,
+    width: 300,  
+    height: 90,  
   }
 });
 

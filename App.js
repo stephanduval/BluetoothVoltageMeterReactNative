@@ -28,40 +28,156 @@ const onClickHandler = () => {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.text}> This Program is called {name}</Text>
-      
-        <View style = {styles.button}>
-          <Button title='Mail Clerk' onPress={()=>{Linking.openURL('https://mailclerk.com/')}}></Button>
-          <Text> 
-                      {`
-              line 1
-              line 2
-            `}                    
-          </Text>
-
-          <Button title='Update State var Name' onPress={onClickHandler}></Button>
+      <View style={styles.row1}>
+        <View style={styles.row1col1}>
+        <Text style={styles.text}>{1}</Text>
         </View>
-      <Text style={styles.text}>This is session number: {session.number} and about {session.title}</Text>
-      <Text stlye={styles.text}>{current ? 'current Session' : 'next session'}</Text>
+        <View style={styles.row1col2}>
+        <Text style={styles.text}>{2}</Text>
+        </View>
+        <View style={styles.row1col3}>
+        <Text style={styles.text}>{3}</Text>
+        </View>
+      </View>
+      <View style={styles.row2}>
+      <View style={styles.row2col1}>
+        <Text style={styles.text}>{4}</Text>
+        </View>
+        <View style={styles.row2col2}>
+        <Text style={styles.text}>{5}</Text>
+        </View>
+      </View>
+      <View style={styles.row3}>
+        <View style={styles.row3col1}>
+        <Text style={styles.text}>{6}</Text>
+        </View>
+        <View style={styles.row3col2}>
+        <Text style={styles.text}>{7}</Text>
+        </View>
+      </View>
+     
     </View>
   );
 };
  
 const styles = StyleSheet.create({
   body: {
-    //flex: 1,
+    // width: 400,
+    // height: 400,
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#d3d3d3',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  
+  },
+  row1:{
+    // width: 100,
+    // height: 100,
+   flex: 1,
+   flexDirection: 'row',
+
+  alignItems: 'stretch',
+  justifyContent: 'center',
+
+  },
+  row2:{
+    // width: 100,
+    // height: 100,
+    flex:2,
+    backgroundColor: 'blue',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+
+  },
+  row3:{
+  //   width: 100,
+  //   height: 100,
+   flex:5,
+   flexDirection: 'row',
+    backgroundColor: 'red',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+
+  },
+
+  row1col1:{
+    // width: 100,
+    // height: 100,
+   flex: 1,
+
+    backgroundColor: 'blue',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 30,
-    borderColor: '#333333',
-    borderRadius: 10,
-    margin: 10,
+
+  },
+  row1col2:{
+    // width: 100,
+    // height: 100,
+   flex: 2,
+
+    backgroundColor: 'pink',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
+  row1col3:{
+    // width: 100,
+    // height: 100,
+   flex: 3,
+
+    backgroundColor: 'yellow',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
+
+  row2col1:{
+    // width: 100,
+    // height: 100,
+   flex: 1,
+
+    backgroundColor: 'red',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+
+  },
+
+  row2col2:{
+    // width: 100,
+    // height: 100,
+   flex: 1,
+
+    backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
+
+  row3col1:{
+    // width: 100,
+    // height: 100,
+   flex: 1,
+
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+  },
+
+  row3col2:{
+    // width: 100,
+    // height: 100,
+   flex: 1,
+
+    backgroundColor: 'blue',
+    alignItems: 'center',
+    justifyContent: 'center',
+
   },
   text: {
     textAlign: 'center',
-    color: '#ffffff',
+    color: 'black',
     fontSize: 25,
     fontWeight: 'bold',
     margin: 10,

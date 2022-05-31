@@ -30,7 +30,7 @@ const App = () => {
 
   const onRefresh = () => {
     setRefreshing(true);
-    setItems([...Items, {key:69, item: 'Item 69'}]);
+    setItems([...Items, { name: 'Item 69'}]);
     setRefreshing(false);
   }
 
@@ -41,7 +41,7 @@ const App = () => {
     {name: 'Name 4'},
     {name: 'Name 5'},
     {name: 'Name 6'},
-    {name: 'Name 7'},
+    {name: 'Name 7'}, 
     {name: 'Name 8'},
     {name: 'Name 9'},
   ]);
@@ -66,7 +66,16 @@ const App = () => {
 
             {/* Beginning of the Flatlist Component  */}
             <FlatList
-            numColumns={2}
+            //numColumns={2}
+            refreshControl={
+            <RefreshControl
+                refreshing={Refreshing}
+                onRefresh={onRefresh}
+                colors={['#ff00ff']}
+              />
+            }
+            
+            inverted  // reverse the list
               keyExtractor={(item, index) => index.toString()}  // creates a key from the index of the item in the array
                   data={Items}
                   renderItem={({item}) => ( 

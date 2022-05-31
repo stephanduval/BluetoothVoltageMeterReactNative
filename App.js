@@ -8,13 +8,20 @@
 
 import React, {useState} from 'react';
 import type {Node} from 'react';
-import {StyleSheet, Text, View, Button, Linking} from 'react-native';
+import {StyleSheet, Text, View, Button, Linking, Pressable, Alert, ScrollView} from 'react-native';
 import ScrollContentViewNativeComponent from 'react-native/Libraries/Components/ScrollView/ScrollContentViewNativeComponent';
 import ScrollViewCommands from 'react-native/Libraries/Components/ScrollView/ScrollViewCommands';
 
 const App = () => {
+
+  const  [name, setName] = useState('Stephan');
+  const updateName = (name) => {
+    setName(name);
+    Alert.alert(name);
+  } 
+  
   const [Items, setItems] = useState([
-    {key: 1, item: 'Item 1'},
+    {key: 1, item: 'Item 1.2'},
     {key: 2, item: 'Item 2'},
     {key: 3, item: 'Item 3'},
     {key: 4, item: 'Item 4'},
@@ -22,13 +29,29 @@ const App = () => {
     {key: 6, item: 'Item 6'},
     {key: 7, item: 'Item 7'},
     {key: 8, item: 'Item 8'},
+    {key: 9, item: 'Item 9'},
     
   ]);
 
   return (
+    
     <View style={styles.body}>
-     
+    <Text style={styles.text}>{name}'s App</Text>
 
+    <Pressable
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'red' : 'blue',
+          },
+          styles.button,
+        ]}
+        onPress={() => updateName('Stephan')}>
+        <Text style={styles.buttonText}>Button</Text>
+      </Pressable>
+
+    <Button title="Update Name" onPress={() => updateName('Bill')}/>
+
+    <ScrollView>
 
 {
       Items.map((objectItem)=>{
@@ -39,6 +62,8 @@ const App = () => {
         )
       })
       }
+      </ScrollView>
+
     </View>
   ) 
 };
@@ -48,10 +73,12 @@ const styles = StyleSheet.create({
     // width: 400,
     // height: 400,
     flex: 1,
-    flexDirection: 'column',
     backgroundColor: '#d3d3d3',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
+    borderWith: 300,
+    borderColor: 'red',
+    margin:15,
   },
   text: {
     textAlign: 'center',
@@ -62,10 +89,32 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   button: {
+    backgroundColor: 'red',
     margin: 30,
-    width: 300,
+    width: 70,
     height: 90,
+    color: 'white',
+    fontSize: 46,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+
+
+    Pressable: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: 'red',
+      margin: 30,
+      width: 70,
+      height: 90,
+      color: 'white',
+      fontSize: 46,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignItems: 'stretch',
+    },
   item: {
     margin: 10,
     backgroundColor: '#4ae1fa',

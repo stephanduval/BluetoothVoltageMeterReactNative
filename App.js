@@ -35,15 +35,15 @@ const App = () => {
   }
 
   const [Items, setItems] = useState([
-    {key: '1', name: 'Name 1.4'},
-    {key: '2', name: 'Name 2.2'},
-    {key: '3', name: 'Name 3'},
-    {key: '4', name: 'Name 4'},
-    {key: '5', name: 'Name 5'},
-    {key: '6', name: 'Name 6'},
-    {key: '7', name: 'Name 7'},
-    {key: '8', name: 'Name 8'},
-    {key: '9', name: 'Name 9'},
+    {name: 'Name 1.5'},
+    {name: 'Name 2.2'},
+    {name: 'Name 3'},
+    {name: 'Name 4'},
+    {name: 'Name 5'},
+    {name: 'Name 6'},
+    {name: 'Name 7'},
+    {name: 'Name 8'},
+    {name: 'Name 9'},
   ]);
 
   return (
@@ -66,8 +66,9 @@ const App = () => {
 
             {/* Beginning of the Flatlist Component  */}
             <FlatList
+              keyExtractor={(item, index) => index.toString()}  // creates a key from the index of the item in the array
                   data={Items}
-                  renderItem={({item}) => (
+                  renderItem={({item}) => ( 
                     <View style={styles.item}>
                       <Text style={styles.text}>
                         {item.name}

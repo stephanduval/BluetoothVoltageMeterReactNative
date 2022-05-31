@@ -16,6 +16,7 @@ import {
   Alert,
   ScrollView,
   RefreshControl,
+  FlatList
 } from 'react-native';
 
 const App = () => {
@@ -34,15 +35,15 @@ const App = () => {
   }
 
   const [Items, setItems] = useState([
-    {key: 1, item: 'Item 1.4'},
-    {key: 2, item: 'Item 2.2'},
-    {key: 3, item: 'Item 3'},
-    {key: 4, item: 'Item 4'},
-    {key: 5, item: 'Item 5'},
-    {key: 6, item: 'Item 6'},
-    {key: 7, item: 'Item 7'},
-    {key: 8, item: 'Item 8'},
-    {key: 9, item: 'Item 9'},
+    {key: '1', name: 'Name 1.4'},
+    {key: '2', name: 'Name 2.2'},
+    {key: '3', name: 'Name 3'},
+    {key: '4', name: 'Name 4'},
+    {key: '5', name: 'Name 5'},
+    {key: '6', name: 'Name 6'},
+    {key: '7', name: 'Name 7'},
+    {key: '8', name: 'Name 8'},
+    {key: '9', name: 'Name 9'},
   ]);
 
   return (
@@ -63,7 +64,21 @@ const App = () => {
 
         <Button title="Update Name" onPress={() => updateName('Bill')} />
 
-        <ScrollView
+            {/* Beginning of the Flatlist Component  */}
+            <FlatList
+                  data={Items}
+                  renderItem={({item}) => (
+                    <View style={styles.item}>
+                      <Text style={styles.text}>
+                        {item.name}
+                      </Text>
+                    </View>
+                  )}>  // Works like an map function
+            </FlatList>
+
+            {/* Beginning of the ScrollView Component */}
+
+        {/* <ScrollView
              refreshControl={
               <RefreshControl
                 refreshing={Refreshing}
@@ -84,7 +99,7 @@ const App = () => {
               </View>
             );
           })}
-        </ScrollView>
+        </ScrollView> */}
       </View>
     </View>
   );

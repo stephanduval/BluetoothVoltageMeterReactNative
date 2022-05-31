@@ -15,6 +15,7 @@ import {
   Pressable,
   Alert,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 
 const App = () => {
@@ -24,8 +25,16 @@ const App = () => {
     Alert.alert(name);
   };
 
+  const [Refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setItems([...Items, {key:69, item: 'Item 69'}]);
+    setRefreshing(false);
+  }
+
   const [Items, setItems] = useState([
-    {key: 1, item: 'Item 1.3'},
+    {key: 1, item: 'Item 1.4'},
     {key: 2, item: 'Item 2.2'},
     {key: 3, item: 'Item 3'},
     {key: 4, item: 'Item 4'},
@@ -54,7 +63,17 @@ const App = () => {
 
         <Button title="Update Name" onPress={() => updateName('Bill')} />
 
-        <ScrollView>
+        <ScrollView
+             refreshControl={
+              <RefreshControl
+                refreshing={Refreshing}
+                onRefresh={onRefresh}
+                colors={['#ff00ff']}
+              />
+            }
+            >
+          
+          
           {Items.map(objectItem => {
             return (
               <View style={styles.item}>

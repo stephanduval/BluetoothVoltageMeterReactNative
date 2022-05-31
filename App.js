@@ -16,7 +16,8 @@ import {
   Alert,
   ScrollView,
   RefreshControl,
-  FlatList
+  FlatList,
+  SectionList,
 } from 'react-native';
 
 const App = () => {
@@ -46,6 +47,35 @@ const App = () => {
     {name: 'Name 9'},
   ]);
 
+  const DATA =[
+    {
+      title:'Title1',
+      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4','Item 1-5','Item 1-6','Item 1-7','Item 1-8','Item 1-9','Item 1-10'],
+    },
+    {
+      title:'Title2',
+      data: ['Item 1-1','Item 1-2'],
+    },
+    {
+      title:'Title3',
+      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4'],
+    },
+    {
+      title:'Title4',
+      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4','Item 1-5','Item 1-6','Item 1-7','Item 1-8','Item 1-9','Item 1-10'],
+    },
+    {
+      title:'Title5',
+      data: ['Item 1-1'],
+    },
+    {
+      title:'Title6',
+      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4','Item 1-5','Item 1-6','Item 1-7'],
+    },
+    
+    
+  ]
+
   return (
     <View style={styles.body}>
       <View style={styles.border}>
@@ -64,8 +94,34 @@ const App = () => {
 
         <Button title="Update Name" onPress={() => updateName('Bill')} />
 
+         {/* Beginning of the SectionList Component  */}
+          <SectionList
+
+          renderSectionHeader={({section}) => (
+            <View style={styles.item}>
+                      <Text style={styles.text}>
+                        {section.title}
+                      </Text>
+                    </View>
+
+          )}
+
+          keyExtractor={(item, index) => index.toString()}
+          sections={DATA}
+          renderItem={({item}) => (
+                      <Text style={styles.text}>
+                        {item}
+                      </Text>
+
+          )}
+
+          />
+
+
             {/* Beginning of the Flatlist Component  */}
-            <FlatList
+
+
+            {/* <FlatList
             //numColumns={2}
             refreshControl={
             <RefreshControl
@@ -85,7 +141,7 @@ const App = () => {
                       </Text>
                     </View>
                   )}>  // Works like an map function
-            </FlatList>
+            </FlatList> */}
 
             {/* Beginning of the ScrollView Component */}
 

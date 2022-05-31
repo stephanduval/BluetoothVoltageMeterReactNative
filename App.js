@@ -66,6 +66,7 @@ const App = () => {
 
             {/* Beginning of the Flatlist Component  */}
             <FlatList
+            numColumns={2}
               keyExtractor={(item, index) => index.toString()}  // creates a key from the index of the item in the array
                   data={Items}
                   renderItem={({item}) => ( 

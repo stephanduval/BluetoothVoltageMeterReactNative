@@ -7,6 +7,7 @@
  */
 
 import React, {useState} from 'react';
+import CustomButton from './CustomButton';
 import {
   StyleSheet,
   Text,
@@ -120,6 +121,15 @@ const App = () => {
           onPress={onPressHandler}>
           <Text style={styles.text}>Submit</Text>
         </Pressable>
+
+        <Text>'Imported As a Component'</Text>
+
+          <CustomButton 
+          title='Custom Button'
+          onPressFunction={onPressHandler}
+
+          />
+
       </View>
     </ScrollView>
   );

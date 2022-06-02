@@ -7,29 +7,99 @@
  */
 
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  Pressable,
+  ScrollView,
+} from 'react-native';
 
 const App = () => {
-  const [name, setName] = useState('e.g. John');
+  const [name, SetName] = useState('e.g. John');
+  const [submitted, SetSubmitted] = useState('false');
+
+  const onPressHandler = () => {
+    SetSubmitted(!submitted);
+  };
 
   return (
-    <View style={styles.body}
-      keyboardShouldPersistTaps='always'
-    >
+    <ScrollView>
+      <View style={styles.body} keyboardShouldPersistTaps="always">
+        <Text style={styles.text}>Please Write Your Name:</Text>
+        <TextInput
+          //multiline
+          style={styles.input}
+          placeholder="e.g. John"
+          keyboardType="default"
+          maxLength={11}
+          editable={true}
+          onChangeText={text => SetName(text)}
+          //secureTextEntry={true} //Does not work with multi-line
+        />
+        <Button
+          title="Submit"
+          onPress={onPressHandler}
+          // disabled = {submitted}
+        />
 
-      <Text style={styles.text}>Please Write Your Name:</Text>
-      <TextInput
-        //multiline
-        style={styles.input}
-        placeholder="e.g. John"
-        keyboardType='default'
-        maxLength={11}
-        editable={true}
-        onChangeText={text => setName(text)}
-        //secureTextEntry={true} //Does not work with multi-line
-      />
-      <Text>Yout Name is: {name}</Text>
-    </View>
+        {submitted ? <Text>You are registered as: {name}</Text> : null}
+
+        <Button title="Reset form" onPress={onPressHandler} />
+        <Text>TouchableOpacity</Text>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={onPressHandler}
+          activeOpacity={0.1} //0.2 by default (how opque the Touchable is when clicked)
+        >
+          <Text style={styles.text}>Submit</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text>{submitted ? 'Clear' : 'Submit'}</Text>
+        </TouchableOpacity>
+        <Text>TouchableHilight</Text>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={onPressHandler}
+          activeOpacity={0.1} //0.2 by default (how opque the Touchable is when clicked)
+          underlayColor="white">
+          <Text style={styles.text}>Submit</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight>
+          <Text>{submitted ? 'Clear' : 'Submit'}</Text>
+        </TouchableHighlight>
+        <Text>TouchableWithoutFeedback</Text>
+        <TouchableWithoutFeedback //Does not accept stylesheets</View>
+        >
+          <View style={styles.button} onPress={onPressHandler}>
+            <Text style={styles.text}>Submit</Text>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <TouchableWithoutFeedback>
+          <Text>{submitted ? 'Clear' : 'Submit'}</Text>
+        </TouchableWithoutFeedback>
+
+        <Text>'Pressable'</Text>
+        <Pressable
+          style={({pressed}) => [
+            styles.button,
+            {backgroundColor: pressed ? 'grey' : 'purple'},
+          ]}
+          onPress={onPressHandler}>
+          <Text style={styles.text}>Submit</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -56,13 +126,14 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'red',
     margin: 30,
-    width: 70,
-    height: 90,
+    padding: 10,
     color: 'white',
-    fontSize: 46,
+    fontSize: 16,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10,
   },
 
   Pressable: {
@@ -91,6 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: 'center',
     fontSize: 20,
+    marginBottom: 10,
   },
 });
 

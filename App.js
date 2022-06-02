@@ -18,43 +18,41 @@ import {
   TouchableWithoutFeedback,
   Pressable,
   ScrollView,
-  Alert,
+  Modal,
 } from 'react-native';
 
 const App = () => {
   const [name, SetName] = useState('e.g. John');
   const [submitted, SetSubmitted] = useState('false');
+  const [showModalWarning, SetShowModalWarning] = useState('false');
 
   const onPressHandler = () => {
     if (name.length > 3) {
       SetSubmitted(!submitted);
     } else {
-      Alert.alert(
-        'Warning',
-        'Please enter name longer than three chars',
-        [
-          {
-            text: 'Neutral',
-            onPress: () => {
-              console.warn('Neutral button pressed');
-            },
-          },
-          {
-            text: 'cancel',
-            onPress: () => {
-              console.warn('cancel button pressed');
-            },
-          },
-          {text: 'ok'},
-        ],
-        {cancelable: true, onDismiss: () => console.warn('Alert dismissed!')},
-      );
+      SetShowModalWarning(true);
     }
   };
 
   return (
     <ScrollView>
       <View style={styles.body} keyboardShouldPersistTaps="always">
+        <Modal
+          visible={showModalWarning}
+          onRequestClose={() => SetShowModalWarning('false')}
+          animationType="slide">
+          <View style={styles.centered_view}>
+            <View style={styles.warning_modal}>
+              <View style={styles.warning_title}>
+                <Text>WARNING!</Text>
+              </View>
+              <Text>'The name must be longer than 3 characters'</Text>
+              <Pressable onPress={() => SetShowModalWarning(false)}>
+                <Text style={styles.text}> OK</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
         <Text style={styles.text}>Please Write Your Name:</Text>
         <TextInput
           //multiline
@@ -187,6 +185,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 10,
+  },
+  centered_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#00000099', //Using alpha channel at end for transparency!
+  },
+  warning_modal: {
+    width: 300,
+    height: 300,
+    backgroundColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 20,
+    alignItems: 'center',
+    padding: 10,
+  },
+  warning_title: {
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

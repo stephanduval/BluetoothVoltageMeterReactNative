@@ -18,6 +18,7 @@ import {
   TouchableWithoutFeedback,
   Pressable,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 const App = () => {
@@ -25,7 +26,30 @@ const App = () => {
   const [submitted, SetSubmitted] = useState('false');
 
   const onPressHandler = () => {
-    SetSubmitted(!submitted);
+    if (name.length > 3) {
+      SetSubmitted(!submitted);
+    } else {
+      Alert.alert(
+        'Warning',
+        'Please enter name longer than three chars',
+        [
+          {
+            text: 'Neutral',
+            onPress: () => {
+              console.warn('Neutral button pressed');
+            },
+          },
+          {
+            text: 'cancel',
+            onPress: () => {
+              console.warn('cancel button pressed');
+            },
+          },
+          {text: 'ok'},
+        ],
+        {cancelable: true, onDismiss: () => console.warn('Alert dismissed!')},
+      );
+    }
   };
 
   return (

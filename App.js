@@ -7,167 +7,28 @@
  */
 
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Pressable,
-  Alert,
-  ScrollView,
-  RefreshControl,
-  FlatList,
-  SectionList,
-} from 'react-native';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 
 const App = () => {
-  const [name, setName] = useState('Stephan');
-  const updateName = () => {
-    setName(name);
-    Alert.alert(name);
-  };
-
-  const [Refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    setItems([...Items, { name: 'Item 69'}]);
-    setRefreshing(false);
-  }
-
-  const [Items, setItems] = useState([
-    {name: 'Name 1.5'},
-    {name: 'Name 2.2'},
-    {name: 'Name 3'},
-    {name: 'Name 4'},
-    {name: 'Name 5'},
-    {name: 'Name 6'},
-    {name: 'Name 7'}, 
-    {name: 'Name 8'},
-    {name: 'Name 9'},
-  ]);
-
-  const DATA =[
-    {
-      title:'Title1',
-      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4','Item 1-5','Item 1-6','Item 1-7','Item 1-8','Item 1-9','Item 1-10'],
-    },
-    {
-      title:'Title2',
-      data: ['Item 1-1','Item 1-2'],
-    },
-    {
-      title:'Title3',
-      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4'],
-    },
-    {
-      title:'Title4',
-      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4','Item 1-5','Item 1-6','Item 1-7','Item 1-8','Item 1-9','Item 1-10'],
-    },
-    {
-      title:'Title5',
-      data: ['Item 1-1'],
-    },
-    {
-      title:'Title6',
-      data: ['Item 1-1','Item 1-2','Item 1-3','Item 1-4','Item 1-5','Item 1-6','Item 1-7'],
-    },
-    
-    
-  ]
+  const [name, setName] = useState('e.g. John');
 
   return (
-    <View style={styles.body}>
-      <View style={styles.border}>
-        <Text style={styles.text}>{name}'s App</Text>
+    <View style={styles.body}
+      keyboardShouldPersistTaps='always'
+    >
 
-        <Pressable
-          style={({pressed}) => [
-            {
-              backgroundColor: pressed ? 'red' : 'blue',
-            },
-            styles.button,
-          ]}
-          onPress={() => updateName('Stephan')}>
-          <Text style={styles.buttonText}>Button</Text>
-        </Pressable>
-
-        <Button title="Update Name" onPress={() => updateName('Bill')} />
-
-         {/* Beginning of the SectionList Component  */}
-          <SectionList
-
-          renderSectionHeader={({section}) => (
-            <View style={styles.item}>
-                      <Text style={styles.text}>
-                        {section.title}
-                      </Text>
-                    </View>
-
-          )}
-
-          keyExtractor={(item, index) => index.toString()}
-          sections={DATA}
-          renderItem={({item}) => (
-                      <Text style={styles.text}>
-                        {item}
-                      </Text>
-
-          )}
-
-          />
-
-
-            {/* Beginning of the Flatlist Component  */}
-
-
-            {/* <FlatList
-            //numColumns={2}
-            refreshControl={
-            <RefreshControl
-                refreshing={Refreshing}
-                onRefresh={onRefresh}
-                colors={['#ff00ff']}
-              />
-            }
-            
-            inverted  // reverse the list
-              keyExtractor={(item, index) => index.toString()}  // creates a key from the index of the item in the array
-                  data={Items}
-                  renderItem={({item}) => ( 
-                    <View style={styles.item}>
-                      <Text style={styles.text}>
-                        {item.name}
-                      </Text>
-                    </View>
-                  )}>  // Works like an map function
-            </FlatList> */}
-
-            {/* Beginning of the ScrollView Component */}
-
-        {/* <ScrollView
-             refreshControl={
-              <RefreshControl
-                refreshing={Refreshing}
-                onRefresh={onRefresh}
-                colors={['#ff00ff']}
-              />
-            }
-            >
-          
-          
-          {Items.map(objectItem => {
-            return (
-              <View style={styles.item}>
-                <Text style={styles.text} key={objectItem.key}>
-                  {' '}
-                  {objectItem.item}
-                </Text>
-              </View>
-            );
-          })}
-        </ScrollView> */}
-      </View>
+      <Text style={styles.text}>Please Write Your Name:</Text>
+      <TextInput
+        //multiline
+        style={styles.input}
+        placeholder="e.g. John"
+        keyboardType='default'
+        maxLength={11}
+        editable={true}
+        onChangeText={text => setName(text)}
+        //secureTextEntry={true} //Does not work with multi-line
+      />
+      <Text>Yout Name is: {name}</Text>
     </View>
   );
 };
@@ -178,17 +39,16 @@ const styles = StyleSheet.create({
     // height: 400,
     flex: 1,
     backgroundColor: '#d3d3d3',
-    alignItems: 'stretch',
-    justifyContent: 'flex-start',
     borderWith: 5,
     borderColor: 'red',
     margin: 15,
+    alignItems: 'center',
   },
 
   text: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 46,
+    fontSize: 30,
     fontWeight: 'bold',
     margin: 10,
     textTransform: 'uppercase',
@@ -223,6 +83,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#4ae1fa',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  input: {
+    width: 200,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 5,
+    textAlign: 'center',
+    fontSize: 20,
   },
 });
 
